@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.romeryto.workshop_javafx_jdbc/com.romeryto.workshop_javafx_jdbc.HelloApplication
+                                com.romeryto.workshop_javafx_jdbc/com.romeryto.workshop_javafx_jdbc.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
