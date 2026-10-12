@@ -1,14 +1,12 @@
 package com.romeryto.workshop_javafx_jdbc.model.entities;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Department implements Serializable {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionIUD = 1L;
+    
     private Integer id;
     private String name;
 
