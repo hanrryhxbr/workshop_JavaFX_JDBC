@@ -65,7 +65,7 @@ public class SellerListController implements Initializable, DataChangeListener {
     public void onBtnNewAction(ActionEvent event) {
         Stage parentStage = Utils.currentStage(event);
         Seller obj = new Seller();
-//        createDialogForm(obj, "/com/romeryto/workshop_javafx_jdbc/gui/SellerForm.fxml", parentStage);
+        createDialogForm(obj, "/com/romeryto/workshop_javafx_jdbc/gui/SellerForm.fxml", parentStage);
     }
 
     public void setSellerService(SellerService service) {
@@ -102,29 +102,29 @@ public class SellerListController implements Initializable, DataChangeListener {
         initRemoveButtons();
     }
 
-//    private void createDialogForm(Seller obj, String absoluteName, Stage parentStage) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-//            Pane pane = loader.load();
-//
-//            SellerFormController controller = loader.getController();
-//            controller.setSellerService(new SellerService());
-//            controller.setSeller(obj);
-//            controller.subscribeDataChangeListener(this);
-//            controller.updateFormData();
-//
-//            Stage dialogStage = new Stage();
-//            dialogStage.setTitle("Enter Seller data");
-//            dialogStage.setScene(new Scene(pane));
-//            dialogStage.setResizable(false);
-//            dialogStage.initOwner(parentStage);
-//            dialogStage.initModality(Modality.WINDOW_MODAL);
-//            dialogStage.showAndWait();
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void createDialogForm(Seller obj, String absoluteName, Stage parentStage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+            Pane pane = loader.load();
+
+            SellerFormController controller = loader.getController();
+            controller.setSellerService(new SellerService());
+            controller.setSeller(obj);
+            controller.subscribeDataChangeListener(this);
+            controller.updateFormData();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Enter Seller data");
+            dialogStage.setScene(new Scene(pane));
+            dialogStage.setResizable(false);
+            dialogStage.initOwner(parentStage);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.showAndWait();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void onDataChanged() {
@@ -143,9 +143,9 @@ public class SellerListController implements Initializable, DataChangeListener {
                     return;
                 }
                 setGraphic(button);
-//                button.setOnAction(
-//                        event -> createDialogForm(
-//                                obj, "/com/romeryto/workshop_javafx_jdbc/gui/SellerForm.fxml", Utils.currentStage(event)));
+                button.setOnAction(
+                        event -> createDialogForm(
+                                obj, "/com/romeryto/workshop_javafx_jdbc/gui/SellerForm.fxml", Utils.currentStage(event)));
             }
         });
     }
