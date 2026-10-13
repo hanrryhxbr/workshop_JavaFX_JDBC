@@ -3,6 +3,7 @@ package com.romeryto.workshop_javafx_jdbc.gui;
 import com.romeryto.workshop_javafx_jdbc.Main;
 import com.romeryto.workshop_javafx_jdbc.gui.util.Alerts;
 import com.romeryto.workshop_javafx_jdbc.model.services.DepartmentService;
+import com.romeryto.workshop_javafx_jdbc.model.services.SellerService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,7 +32,10 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemSellerAction() {
-        IO.println("onMenuItemSellerAction");
+        loadView("/com/romeryto/workshop_javafx_jdbc/gui/SellerList.fxml", (SellerListController controller) -> {
+            controller.setSellerService(new SellerService());
+            controller.updateTableView();
+        });
     }
 
     @FXML
