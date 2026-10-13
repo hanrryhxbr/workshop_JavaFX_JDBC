@@ -1,6 +1,7 @@
 package com.romeryto.workshop_javafx_jdbc.gui;
 
 import com.romeryto.workshop_javafx_jdbc.Main;
+import com.romeryto.workshop_javafx_jdbc.gui.listeners.DataChangeListener;
 import com.romeryto.workshop_javafx_jdbc.gui.util.Alerts;
 import com.romeryto.workshop_javafx_jdbc.gui.util.Utils;
 import com.romeryto.workshop_javafx_jdbc.model.entities.Department;
@@ -26,7 +27,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DepartmentListController implements Initializable {
+public class DepartmentListController implements Initializable, DataChangeListener {
 
     private DepartmentService service;
 
@@ -88,6 +89,7 @@ public class DepartmentListController implements Initializable {
             DepartmentFormController controller = loader.getController();
             controller.setDepartmentService(new DepartmentService());
             controller.setDepartment(obj);
+            controller.subscribeDataChangeListener(this);
             controller.updateFormData();
 
             Stage dialogStage = new Stage();
@@ -101,5 +103,10 @@ public class DepartmentListController implements Initializable {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onDataChanged() {
+        updateTableView();
     }
 }
