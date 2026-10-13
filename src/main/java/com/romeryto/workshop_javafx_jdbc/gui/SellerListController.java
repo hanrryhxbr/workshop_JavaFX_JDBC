@@ -6,6 +6,7 @@ import com.romeryto.workshop_javafx_jdbc.gui.listeners.DataChangeListener;
 import com.romeryto.workshop_javafx_jdbc.gui.util.Alerts;
 import com.romeryto.workshop_javafx_jdbc.gui.util.Utils;
 import com.romeryto.workshop_javafx_jdbc.model.entities.Seller;
+import com.romeryto.workshop_javafx_jdbc.model.services.DepartmentService;
 import com.romeryto.workshop_javafx_jdbc.model.services.SellerService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -108,7 +109,8 @@ public class SellerListController implements Initializable, DataChangeListener {
             Pane pane = loader.load();
 
             SellerFormController controller = loader.getController();
-            controller.setSellerService(new SellerService());
+            controller.setServices(new SellerService(), new DepartmentService());
+            controller.loadAssociatedObjects();
             controller.setSeller(obj);
             controller.subscribeDataChangeListener(this);
             controller.updateFormData();
@@ -123,6 +125,7 @@ public class SellerListController implements Initializable, DataChangeListener {
         }
         catch (IOException e) {
             e.printStackTrace();
+            Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
